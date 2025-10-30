@@ -6,7 +6,10 @@ export default {
   trailingComma: 'all',
   singleQuote: true,
   jsxSingleQuote: true,
-  plugins: ['@ianvs/prettier-plugin-sort-imports'],
+  plugins: [
+    '@ianvs/prettier-plugin-sort-imports',
+    'prettier-plugin-tailwindcss',
+  ],
   importOrder: [
     '<TYPES>',
     '',
@@ -19,4 +22,5 @@ export default {
     '.s?css$',
   ],
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
+  tailwindFunctions: ['cva', 'cn', 'clsx'],
 };

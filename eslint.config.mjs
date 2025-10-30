@@ -10,7 +10,14 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-  globalIgnores(['dist', '.next/**', 'node_modules/**']),
+  globalIgnores([
+    'dist',
+    '.next/**',
+    'node_modules/**',
+    '.git/**',
+    '*.d.ts',
+    'src/lib/**',
+  ]),
 
   {
     files: ['**/*.{ts,tsx}'],
