@@ -17,6 +17,8 @@ export default defineConfig([
     '.git/**',
     '*.d.ts',
     'src/lib/**',
+    'src/utils/lib/**',
+    'src/shared/hooks/**',
   ]),
 
   {
@@ -60,6 +62,7 @@ export default defineConfig([
       'object-curly-spacing': ['warn', 'always'],
       'no-console': ['error', { allow: ['error', 'warn'] }],
       'no-unreachable': 'error',
+      'unicorn/filename-case': 'off',
       'react/jsx-sort-props': [
         'warn',
         {

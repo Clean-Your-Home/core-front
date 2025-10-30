@@ -1,3 +1,4 @@
+import './reset.css';
 import './globals.css';
 
 const RootLayout = ({
@@ -7,7 +8,9 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang='ru'>
-      <body>{children}</body>
+      <body>
+        <main>{children}</main>
+      </body>
     </html>
   );
 };
