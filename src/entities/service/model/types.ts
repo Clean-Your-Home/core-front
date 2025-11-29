@@ -1,3 +1,5 @@
+import { Icon } from '@/@types';
+
 export interface ServiceDetails {
   title: string;
   description: string;
@@ -9,8 +11,7 @@ export interface Service {
   id: number;
   title: string;
   description: string;
-  icon: React.ComponentType<{ className?: string }>;
-
+  icon: Icon;
   serviceId: string;
   details: ServiceDetails;
 }
