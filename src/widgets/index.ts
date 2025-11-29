@@ -1,7 +1,9 @@
 export { AboutSection } from './about';
-export { BlogPreview } from './blog/ui/BlogPreview';
+export { BlogPreview } from './blog';
 export { ContactSection } from './contact';
-export { FaqSection } from './faq/ui/FaqSection';
+export { FaqSection } from './faq';
+export { Footer } from './footer';
 export { GalleryPreview } from './gallery';
+export { Header } from './header';
 export { HeroSection } from './hero';
 export { ServicesSection } from './services';

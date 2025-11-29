@@ -2,7 +2,7 @@ import './reset.css';
 import './globals.css';
 
 import { Toaster } from '@/shared/ui/sonner';
-import { Header } from '@/widgets/header/ui/Header';
+import { Footer, Header } from '@/widgets';
 
 const RootLayout = ({
   children,
@@ -14,6 +14,7 @@ const RootLayout = ({
       <body>
         <Header />
         <main>{children}</main>
+        <Footer />
         <Toaster />
       </body>
     </html>

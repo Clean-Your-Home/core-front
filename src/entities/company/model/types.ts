@@ -12,4 +12,16 @@ export interface CompanyInfo {
   description: string;
   yearsExperience: number;
   values: string[];
+  year: number;
+}
+
+export interface SocialLink {
+  name: string;
+  url: string;
+  icon: Icon;
+}
+
+export interface ServiceLink {
+  name: string;
+  href: string;
 }

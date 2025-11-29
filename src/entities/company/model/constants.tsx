@@ -1,4 +1,6 @@
-import { Advantage, CompanyInfo } from './types';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
+
+import { Advantage, CompanyInfo, ServiceLink, SocialLink } from './types';
 
 export const COMPANY_INFO: CompanyInfo = {
   name: 'Spotless Cleaning',
@@ -8,6 +10,7 @@ export const COMPANY_INFO: CompanyInfo = {
   values: [
     'Мы используем только профессиональное оборудование и экологически чистые моющие средства, которые безопасны для вас, ваших детей и домашних животных.',
   ],
+  year: new Date().getFullYear(),
 };
 
 export const ADVANTAGES: Advantage[] = [
@@ -76,3 +79,17 @@ export const ADVANTAGES: Advantage[] = [
     ),
   },
 ];
+
+export const FOOTER_SERVICES: ServiceLink[] = [
+  { name: 'Поддерживающая уборка', href: '/#services' },
+  { name: 'Генеральная уборка', href: '/#services' },
+  { name: 'Уборка после ремонта', href: '/#services' },
+  { name: 'Мойка окон', href: '/#services' },
+  { name: 'Химчистка мебели и ковров', href: '/#services' },
+] as const;
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  { name: 'Facebook', url: 'https://facebook.com', icon: Facebook },
+  { name: 'Twitter', url: 'https://twitter.com', icon: Twitter },
+  { name: 'Instagram', url: 'https://instagram.com', icon: Instagram },
+] as const;
