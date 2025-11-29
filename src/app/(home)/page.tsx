@@ -1,7 +1,13 @@
-import { HeroSection } from './sections';
+import { HeroSection } from '@/widgets/hero';
+import { ServicesSection } from '@/widgets/services';
 
 const Home = () => {
-  return <HeroSection />;
+  return (
+    <>
+      <HeroSection />
+      <ServicesSection />
+    </>
+  );
 };
 
 export default Home;

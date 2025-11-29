@@ -16,7 +16,7 @@ export default defineConfig([
     'node_modules/**',
     '.git/**',
     '*.d.ts',
-    'src/lib/**',
+    'src/shared/lib/**',
     'src/utils/lib/**',
     'src/shared/hooks/**',
   ]),
