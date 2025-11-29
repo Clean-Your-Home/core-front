@@ -1,4 +1,5 @@
 export { AboutSection } from './about';
+export { BlogPreview } from './blog/ui/BlogPreview';
 export { FaqSection } from './faq/ui/FaqSection';
 export { GalleryPreview } from './gallery';
 export { HeroSection } from './hero';
