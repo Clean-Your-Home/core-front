@@ -7,7 +7,7 @@ import { Typography } from '@/shared/ui/typography';
 
 export const GalleryPreview = () => {
   return (
-    <section className='bg-muted/50 py-16 md:py-24'>
+    <section className='bg-muted/80 py-8'>
       <div className='container mx-auto px-4'>
         <div className='mx-auto max-w-2xl text-center'>
           <Typography
