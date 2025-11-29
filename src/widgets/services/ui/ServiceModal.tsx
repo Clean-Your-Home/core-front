@@ -4,23 +4,22 @@ import { Check } from 'lucide-react';
 import Link from 'next/link';
 
 import { Service } from '@/entities/service';
-import { Badge } from '@/shared/ui/badge/badge';
+import { ROUTES } from '@/shared/config/routes';
+import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
-import { Dialog, DialogContent } from '@/shared/ui/dialog/dialog';
+import { Dialog, DialogContent } from '@/shared/ui/dialog';
 import { Typography } from '@/shared/ui/typography';
 
 interface ServiceModalProperties {
   service: Service;
   isOpen: boolean;
   onClose: () => void;
-  onOrderClick: () => void;
 }
 
 export const ServiceModal = ({
   service,
   isOpen,
   onClose,
-  onOrderClick,
 }: ServiceModalProperties) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -52,11 +51,8 @@ export const ServiceModal = ({
           </div>
 
           <div className='flex gap-2 pt-2'>
-            <Button className='flex-1' onClick={onOrderClick}>
-              Заказать
-            </Button>
-            <Button asChild className='flex-1 bg-transparent' variant='outline'>
-              <Link href='/calculator'>Рассчитать</Link>
+            <Button asChild className='flex-1'>
+              <Link href={ROUTES.CALCULATOR}>Рассчитать стоимость</Link>
             </Button>
           </div>
         </div>

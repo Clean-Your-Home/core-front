@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 import { SERVICES } from '@/entities/service';
-import { OrderModal } from '@/features/ServiceOrder';
 import { Typography } from '@/shared/ui/typography';
 import { ServiceCard } from './ServiceCard';
 import { ServiceModal } from './ServiceModal';
@@ -13,7 +12,6 @@ export function ServicesSection() {
     (typeof SERVICES)[0] | null
   >();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 
   return (
     <section className='py-8 md:py-16' id='services'>
@@ -53,18 +51,8 @@ export function ServicesSection() {
             setIsModalOpen(false);
             setSelectedService(undefined);
           }}
-          onOrderClick={() => {
-            setIsModalOpen(false);
-            setIsOrderModalOpen(true);
-          }}
         />
       )}
-
-      <OrderModal
-        initialService={selectedService?.title}
-        isOpen={isOrderModalOpen}
-        onClose={() => setIsOrderModalOpen(false)}
-      />
     </section>
   );
 }
