@@ -1,6 +1,9 @@
-import { AboutSection } from '@/widgets/about';
-import { HeroSection } from '@/widgets/hero';
-import { ServicesSection } from '@/widgets/services';
+import {
+  AboutSection,
+  GalleryPreview,
+  HeroSection,
+  ServicesSection,
+} from '@/widgets';
 
 const Home = () => {
   return (
@@ -8,6 +11,7 @@ const Home = () => {
       <HeroSection />
       <ServicesSection />
       <AboutSection />
+      <GalleryPreview />
     </>
   );
 };
