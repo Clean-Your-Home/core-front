@@ -20,7 +20,7 @@ import {
 } from '@/entities/profile/model/constants';
 import { ProfileLayout } from '@/widgets/profile-page/ui/ProfileLayout';
 
-function ProfilePage() {
+const ProfilePage = () => {
   const [profile, setProfile] = useState<UserProfile>(DEFAULT_USER_PROFILE);
   const [orders] = useState<readonly Order[]>(SAMPLE_ORDERS);
   const [reviews, setReviews] = useState<readonly Review[]>(SAMPLE_REVIEWS);
@@ -90,6 +90,6 @@ function ProfilePage() {
       onDeleteReview={handleDeleteReview}
     />
   );
-}
+};
 
 export default ProfilePage;
