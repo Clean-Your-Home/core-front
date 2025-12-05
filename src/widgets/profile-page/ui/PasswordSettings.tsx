@@ -40,8 +40,14 @@ export function PasswordSettings({
     try {
       await onSubmit(data);
       onSuccess();
-    } catch {
-      // Error handling is done in the parent component
+    } catch (error) {
+      if (error instanceof Error) {
+        form.setError('root', { message: error.message });
+      } else {
+        form.setError('root', {
+          message: 'Произошла ошибка при изменении пароля',
+        });
+      }
     }
   });
 
@@ -49,7 +55,7 @@ export function PasswordSettings({
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit} className='space-y-4'>
+      <form className='space-y-4' onSubmit={handleSubmit}>
         <FormField
           control={form.control}
           name='currentPassword'
@@ -57,7 +63,7 @@ export function PasswordSettings({
             <FormItem>
               <FormLabel>Текущий пароль</FormLabel>
               <FormControl>
-                <Input {...field} type='password' disabled={isSubmitting} />
+                <Input {...field} disabled={isSubmitting} type='password' />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -71,7 +77,7 @@ export function PasswordSettings({
             <FormItem>
               <FormLabel>Новый пароль</FormLabel>
               <FormControl>
-                <Input {...field} type='password' disabled={isSubmitting} />
+                <Input {...field} disabled={isSubmitting} type='password' />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -85,14 +91,14 @@ export function PasswordSettings({
             <FormItem>
               <FormLabel>Подтверждение пароля</FormLabel>
               <FormControl>
-                <Input {...field} type='password' disabled={isSubmitting} />
+                <Input {...field} disabled={isSubmitting} type='password' />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type='submit' disabled={isSubmitting}>
+        <Button disabled={isSubmitting} type='submit'>
           {isSubmitting ? 'Сохранение...' : 'Сохранить пароль'}
         </Button>
       </form>
