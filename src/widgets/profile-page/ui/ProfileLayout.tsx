@@ -48,11 +48,11 @@ export function ProfileLayout(properties: ProfileLayoutProperties) {
         <ProfileContent {...properties} />
       </div>
       <SettingsModal
+        activeTab={activeSettingsTab}
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
-        activeTab={activeSettingsTab}
-        onUpdatePassword={properties.onUpdatePassword}
         onUpdateNotifications={properties.onUpdateNotifications}
+        onUpdatePassword={properties.onUpdatePassword}
       />
     </div>
   );

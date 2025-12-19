@@ -42,7 +42,7 @@ export function SettingsModal({
           </DialogDescription>
         </DialogHeader>
 
-        <Tabs defaultValue={activeTab} className='w-full'>
+        <Tabs className='w-full' defaultValue={activeTab}>
           <TabsList className='grid w-full grid-cols-2'>
             <TabsTrigger value='password'>Безопасность</TabsTrigger>
             <TabsTrigger value='notifications'>Уведомления</TabsTrigger>

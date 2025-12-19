@@ -33,17 +33,25 @@ export const ServiceDetailsModal = ({
 
         <div className='grid gap-6 py-4 md:grid-cols-2'>
           <div>
-            <div className='relative h-48 w-full overflow-hidden rounded-lg'>
-              <Image
-                fill
-                alt={service.details.title}
-                className='object-cover'
-                src={service.details.image}
-              />
+            <div className='relative h-48 w-full overflow-hidden rounded-lg bg-muted'>
+              {service.details.image ? (
+                <Image
+                  fill
+                  alt={service.details.title}
+                  className='object-cover'
+                  src={service.details.image}
+                />
+              ) : (
+                <div className='flex h-full w-full items-center justify-center text-muted-foreground'>
+                  Изображение недоступно
+                </div>
+              )}
             </div>
+
             <p className='mt-4 font-semibold'>
               Стоимость: {service.details.price}
             </p>
+
             <Button className='mt-4 w-full' onClick={onOrderClick}>
               Заказать услугу
             </Button>

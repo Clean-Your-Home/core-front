@@ -44,13 +44,11 @@ const useFormField = () => {
   if (!fieldContext) {
     throw new Error('useFormField should be used within <FormField>');
   }
-
   if (!itemContext) {
     throw new Error('useFormField should be used within <FormItem>');
   }
 
   const fieldState = getFieldState(fieldContext.name, formState);
-
   const { id } = itemContext;
 
   return {
@@ -116,13 +114,11 @@ const FormControl = React.forwardRef<
   return (
     <Slot
       ref={reference}
-      id={formItemId}
       aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
+        error ? `${formDescriptionId} ${formMessageId}` : formDescriptionId
       }
       aria-invalid={!!error}
+      id={formItemId}
       {...properties}
     />
   );
@@ -137,10 +133,10 @@ const FormDescription = React.forwardRef<
 
   return (
     <p
-      ref={reference}
-      id={formDescriptionId}
       className={cn('text-[0.8rem] text-muted-foreground', className)}
+      id={formDescriptionId}
       {...properties}
+      ref={reference}
     />
   );
 });
@@ -159,10 +155,10 @@ const FormMessage = React.forwardRef<
 
   return (
     <p
-      ref={reference}
-      id={formMessageId}
       className={cn('text-[0.8rem] font-medium text-destructive', className)}
+      id={formMessageId}
       {...properties}
+      ref={reference}
     >
       {body}
     </p>
@@ -171,7 +167,6 @@ const FormMessage = React.forwardRef<
 FormMessage.displayName = 'FormMessage';
 
 export {
-  useFormField,
   Form,
   FormItem,
   FormLabel,
@@ -179,4 +174,5 @@ export {
   FormDescription,
   FormMessage,
   FormField,
+  useFormField,
 };

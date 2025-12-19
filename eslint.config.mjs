@@ -72,6 +72,7 @@ export default defineConfig([
           reservedFirst: true,
         },
       ],
+      'react/prop-types': 'off',
       '@typescript-eslint/restrict-template-expressions': [
         'error',
         { allowBoolean: true },

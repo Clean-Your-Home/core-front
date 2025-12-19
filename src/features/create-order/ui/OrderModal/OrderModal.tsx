@@ -166,6 +166,7 @@ export const OrderModal = ({
       loading: 'Отправка заказа...',
       success: (result) => {
         onClose();
+        // TODO:сделать страницу
         router.push('/payment');
         return `Заказ на "${result.service}" принят! Перенаправляем к оплате.`;
       },

@@ -5,28 +5,21 @@ import { useDebounceCallback } from '../useDebounceCallback';
 /**
  * @name useDebounceValue
  * @description - Hook that creates a debounced value
- * @category Utilities
- * @usage high
-
- * @template Value The type of the value
- * @param {Value} value The value to be debounced
- * @param {number} delay The delay in milliseconds
- * @returns {Value} The debounced value
- *
- * @example
- * const debouncedValue = useDebounceValue(value, 500);
+ * @param value - The value to be debounced
+ * @param delay - The delay in milliseconds
+ * @returns The debounced value
  */
-export const useDebounceValue = <Value>(value: Value, delay: number) => {
-  const previousValueRef = useRef(value);
-  const [debouncedValue, setDebounceValue] = useState(value);
+export const useDebounceValue = <T,>(value: T, delay: number): T => {
+  const previousValueRef = useRef<T>(value);
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
-  const debouncedSetState = useDebounceCallback(setDebounceValue, delay);
+  const debouncedSetState = useDebounceCallback(setDebouncedValue, delay);
 
   useEffect(() => {
     if (previousValueRef.current === value) return;
     debouncedSetState(value);
     previousValueRef.current = value;
-  }, [value]);
+  }, [value, debouncedSetState]);
 
   return debouncedValue;
 };

@@ -30,9 +30,9 @@ export function ProfileTabs({
   return (
     <ProfileTabsContext.Provider value={{ activeTab, setActiveTab }}>
       <Tabs
+        className='w-full'
         value={activeTab}
         onValueChange={(value) => setActiveTab(value as ProfileTab)}
-        className='w-full'
       >
         {children}
       </Tabs>

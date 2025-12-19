@@ -44,7 +44,7 @@ export const FrequencyStep = ({
               )}
               onClick={() => onFrequencyChange(freq)}
             >
-              <RadioGroupItem value={freq} id={`freq-${freq}`} />
+              <RadioGroupItem id={`freq-${freq}`} value={freq} />
               <Label
                 className='flex w-full cursor-pointer items-center'
                 htmlFor={`freq-${freq}`}

@@ -10,24 +10,27 @@ import { ServiceDetailsModal } from '@/features/view-service-details/ui/ServiceD
 const ServicesSectionContent = () => {
   const [selectedService, setSelectedService] = useState<Service | undefined>();
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [serviceToOrder, setServiceToOrder] = useState<string | undefined>();
 
   const searchParameters = useSearchParams();
+
   useEffect(() => {
     const serviceParameter = searchParameters.get('service');
-    if (serviceParameter) {
-      const service = SERVICES.find((s) => s.serviceId === serviceParameter);
-      if (service) {
-        setSelectedService(service);
-        setTimeout(() => {
-          document
-            .querySelector('services')
-            ?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [searchParameters]);
+    if (!serviceParameter) return;
 
-  const [serviceToOrder, setServiceToOrder] = useState<string | undefined>();
+    const service = SERVICES.find((s) => s.serviceId === serviceParameter);
+    if (!service) return;
+
+    const timer = setTimeout(() => {
+      setSelectedService(service);
+
+      document
+        .querySelector('services')
+        ?.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
+
+    return () => clearTimeout(timer);
+  }, [searchParameters]);
 
   const onOrderClick = () => {
     setServiceToOrder(selectedService?.title);

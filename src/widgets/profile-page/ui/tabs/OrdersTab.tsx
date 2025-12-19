@@ -96,8 +96,8 @@ export function OrdersTab({ orders }: OrdersTabProperties) {
       </Card>
 
       <OrderDetailsModal
-        order={selectedOrder}
         isOpen={isOrderDetailsOpen}
+        order={selectedOrder}
         onClose={() => setIsOrderDetailsOpen(false)}
       />
     </>

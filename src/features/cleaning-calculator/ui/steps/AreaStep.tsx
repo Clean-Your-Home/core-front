@@ -16,19 +16,19 @@ export const AreaStep = ({
     <div className='space-y-6'>
       <div className='space-y-4'>
         <div className='flex justify-between'>
-          <Label htmlFor='area' className='text-lg'>
+          <Label className='text-lg' htmlFor='area'>
             Укажите площадь помещения
           </Label>
           <span className='text-xl font-semibold text-primary'>{area} м²</span>
         </div>
         <Slider
+          className='py-4'
           id='area'
-          min={10}
           max={300}
+          min={10}
           step={5}
           value={[area]}
           onValueChange={(vals) => onAreaChange(vals[0])}
-          className='py-4'
         />
         <div className='flex justify-between text-xs text-muted-foreground'>
           <span>10 м²</span>

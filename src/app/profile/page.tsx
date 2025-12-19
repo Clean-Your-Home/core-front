@@ -1,9 +1,7 @@
 'use client';
 
 import type {
-  NotificationSettings,
   Order,
-  PasswordFormData,
   ProfileFormData,
   Review,
   UserProfile,
@@ -20,6 +18,24 @@ import {
 } from '@/entities/profile/model/constants';
 import { ProfileLayout } from '@/widgets/profile-page/ui/ProfileLayout';
 
+const handleUpdatePassword = async () => {
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    toast.success('Пароль обновлен');
+  } catch {
+    toast.error('Ошибка обновления пароля');
+  }
+};
+
+const handleUpdateNotifications = async () => {
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    toast.success('Настройки уведомлений обновлены');
+  } catch {
+    toast.error('Ошибка обновления уведомлений');
+  }
+};
+
 const ProfilePage = () => {
   const [profile, setProfile] = useState<UserProfile>(DEFAULT_USER_PROFILE);
   const [orders] = useState<readonly Order[]>(SAMPLE_ORDERS);
@@ -32,24 +48,6 @@ const ProfilePage = () => {
       toast.success('Профиль обновлен');
     } catch {
       toast.error('Ошибка обновления профиля');
-    }
-  };
-
-  const handleUpdatePassword = async (data: PasswordFormData) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast.success('Пароль обновлен');
-    } catch {
-      toast.error('Ошибка обновления пароля');
-    }
-  };
-
-  const handleUpdateNotifications = async (settings: NotificationSettings) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast.success('Настройки уведомлений обновлены');
-    } catch {
-      toast.error('Ошибка обновления уведомлений');
     }
   };
 
@@ -80,14 +78,14 @@ const ProfilePage = () => {
 
   return (
     <ProfileLayout
-      profile={profile}
       orders={orders}
+      profile={profile}
       reviews={reviews}
-      onUpdateProfile={handleUpdateProfile}
-      onUpdatePassword={handleUpdatePassword}
-      onUpdateNotifications={handleUpdateNotifications}
-      onEditReview={handleEditReview}
       onDeleteReview={handleDeleteReview}
+      onEditReview={handleEditReview}
+      onUpdateNotifications={handleUpdateNotifications}
+      onUpdatePassword={handleUpdatePassword}
+      onUpdateProfile={handleUpdateProfile}
     />
   );
 };

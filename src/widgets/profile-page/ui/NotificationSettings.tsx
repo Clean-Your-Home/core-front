@@ -53,8 +53,8 @@ export function NotificationSettings({
             </p>
           </div>
           <Switch
-            id='email-notifications'
             checked={settings.emailNotifications}
+            id='email-notifications'
             onCheckedChange={() => handleToggle('emailNotifications')}
           />
         </div>
@@ -67,8 +67,8 @@ export function NotificationSettings({
             </p>
           </div>
           <Switch
-            id='sms-notifications'
             checked={settings.smsNotifications}
+            id='sms-notifications'
             onCheckedChange={() => handleToggle('smsNotifications')}
           />
         </div>
@@ -81,14 +81,14 @@ export function NotificationSettings({
             </p>
           </div>
           <Switch
-            id='promotional-emails'
             checked={settings.promotionalEmails}
+            id='promotional-emails'
             onCheckedChange={() => handleToggle('promotionalEmails')}
           />
         </div>
       </div>
 
-      <Button onClick={handleSubmit} disabled={isSubmitting}>
+      <Button disabled={isSubmitting} onClick={handleSubmit}>
         {isSubmitting ? 'Сохранение...' : 'Сохранить настройки'}
       </Button>
     </div>

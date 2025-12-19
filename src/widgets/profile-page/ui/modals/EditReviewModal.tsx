@@ -83,7 +83,7 @@ export function EditReviewModal({
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={handleSubmit} className='space-y-4'>
+          <form className='space-y-4' onSubmit={handleSubmit}>
             <FormField
               control={form.control}
               name='rating'
@@ -146,7 +146,7 @@ export function EditReviewModal({
               >
                 Отмена
               </Button>
-              <Button type='submit' disabled={isSubmitting}>
+              <Button disabled={isSubmitting} type='submit'>
                 {isSubmitting ? 'Сохранение...' : 'Сохранить изменения'}
               </Button>
             </div>

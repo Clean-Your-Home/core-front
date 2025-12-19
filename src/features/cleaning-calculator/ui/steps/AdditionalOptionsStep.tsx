@@ -1,3 +1,5 @@
+'use client';
+
 import { Brush as Broom, Cat, Dog, AirVent as Vacuum } from 'lucide-react';
 
 import { cn } from '@/shared/lib/utils';
@@ -6,13 +8,49 @@ import { Label } from '@/shared/ui/label';
 
 interface AdditionalOptionsStepProperties {
   noMop: boolean;
-  setNoMop: (v: boolean) => void;
+  setNoMop: (value: boolean) => void;
   noVacuum: boolean;
-  setNoVacuum: (v: boolean) => void;
+  setNoVacuum: (value: boolean) => void;
   hasPet: boolean;
-  setHasPet: (v: boolean) => void;
+  setHasPet: (value: boolean) => void;
   displayPrice: number;
 }
+
+interface OptionItemProperties {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  icon: React.ReactNode;
+  label: string;
+  id: string;
+}
+
+const OptionItem = ({
+  checked,
+  onChange,
+  icon,
+  label,
+  id,
+}: OptionItemProperties) => (
+  <div
+    className={cn(
+      'flex cursor-pointer items-center space-x-2 rounded-lg border p-4 transition-all',
+      checked
+        ? 'border-primary bg-primary/5'
+        : 'border-muted hover:border-primary/30',
+    )}
+    onClick={() => onChange(!checked)}
+  >
+    <Checkbox
+      checked={checked}
+      id={id}
+      onCheckedChange={(c) => onChange(!!c)}
+    />
+    <Label className='flex cursor-pointer items-center' htmlFor={id}>
+      {icon}
+      {label}
+    </Label>
+  </div>
+);
 
 export const AdditionalOptionsStep = ({
   noMop,
@@ -56,6 +94,7 @@ export const AdditionalOptionsStep = ({
           />
         </div>
       </div>
+
       <div className='mt-6 flex items-center justify-between border-t pt-4'>
         <span className='text-lg font-medium'>Текущая стоимость:</span>
         <span className='text-2xl font-bold text-primary'>
@@ -65,25 +104,3 @@ export const AdditionalOptionsStep = ({
     </div>
   );
 };
-
-const OptionItem = ({ checked, onChange, icon, label, id }: any) => (
-  <div
-    className={cn(
-      'flex cursor-pointer items-center space-x-2 rounded-lg border p-4 transition-all',
-      checked
-        ? 'border-primary bg-primary/5'
-        : 'border-muted hover:border-primary/30',
-    )}
-    onClick={() => onChange(!checked)}
-  >
-    <Checkbox
-      checked={checked}
-      id={id}
-      onCheckedChange={(c) => onChange(!!c)}
-    />
-    <Label className='flex cursor-pointer items-center' htmlFor={id}>
-      {icon}
-      {label}
-    </Label>
-  </div>
-);

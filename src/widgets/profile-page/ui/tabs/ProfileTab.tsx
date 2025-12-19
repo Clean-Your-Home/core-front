@@ -85,7 +85,7 @@ export function ProfileTab({ profile, onUpdateProfile }: ProfileTabProperties) {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input {...field} type='email' disabled={isSubmitting} />
+                      <Input {...field} disabled={isSubmitting} type='email' />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -99,7 +99,7 @@ export function ProfileTab({ profile, onUpdateProfile }: ProfileTabProperties) {
                   <FormItem>
                     <FormLabel>Телефон</FormLabel>
                     <FormControl>
-                      <Input {...field} type='tel' disabled={isSubmitting} />
+                      <Input {...field} disabled={isSubmitting} type='tel' />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -123,7 +123,7 @@ export function ProfileTab({ profile, onUpdateProfile }: ProfileTabProperties) {
           </CardContent>
 
           <CardFooter>
-            <Button type='submit' disabled={!hasChanges || isSubmitting}>
+            <Button disabled={!hasChanges || isSubmitting} type='submit'>
               {isSubmitting ? 'Сохранение...' : 'Сохранить изменения'}
             </Button>
           </CardFooter>

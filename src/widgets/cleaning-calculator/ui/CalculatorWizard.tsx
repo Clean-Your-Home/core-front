@@ -44,7 +44,7 @@ const STEPS_INFO = [
     description: 'Выберите дополнительные услуги, если необходимо',
   },
   { title: 'Итог', description: 'Проверьте итоговый расчет и оформите заказ' },
-];
+] as const;
 
 export const CalculatorWizard = () => {
   const calc = useCleaningCalculation();
@@ -61,14 +61,18 @@ export const CalculatorWizard = () => {
 
   const canProceed = useMemo(() => {
     switch (currentStep) {
-      case 0:
+      case 0: {
         return !!calc.serviceType;
-      case 1:
+      }
+      case 1: {
         return calc.area >= 10;
-      case 2:
+      }
+      case 2: {
         return !!calc.frequency;
-      default:
+      }
+      default: {
         return true;
+      }
     }
   }, [currentStep, calc.serviceType, calc.area, calc.frequency]);
 
@@ -76,62 +80,69 @@ export const CalculatorWizard = () => {
 
   const renderStepContent = () => {
     switch (currentStep) {
-      case 0:
+      case 0: {
         return (
           <ServiceTypeStep
+            displayPrice={calc.displayPrice}
             selectedType={calc.serviceType}
             onSelect={calc.setServiceType}
-            displayPrice={calc.displayPrice}
           />
         );
-      case 1:
+      }
+      case 1: {
         return (
           <AreaStep
             area={calc.area}
-            onAreaChange={calc.setArea}
             displayPrice={calc.displayPrice}
+            onAreaChange={calc.setArea}
           />
         );
-      case 2:
+      }
+      case 2: {
         return (
           <FrequencyStep
-            frequency={calc.frequency}
-            onFrequencyChange={calc.setFrequency}
-            isUrgent={calc.isUrgent}
-            onUrgentChange={calc.setIsUrgent}
             displayPrice={calc.displayPrice}
+            frequency={calc.frequency}
+            isUrgent={calc.isUrgent}
+            onFrequencyChange={calc.setFrequency}
+            onUrgentChange={calc.setIsUrgent}
           />
         );
-      case 3:
+      }
+      case 3: {
         return (
           <AdditionalOptionsStep
-            noMop={calc.noMop}
-            setNoMop={calc.setNoMop}
-            noVacuum={calc.noVacuum}
-            setNoVacuum={calc.setNoVacuum}
-            hasPet={calc.hasPet}
-            setHasPet={calc.setHasPet}
             displayPrice={calc.displayPrice}
+            hasPet={calc.hasPet}
+            noMop={calc.noMop}
+            noVacuum={calc.noVacuum}
+            setHasPet={calc.setHasPet}
+            setNoMop={calc.setNoMop}
+            setNoVacuum={calc.setNoVacuum}
           />
         );
-      case 4:
+      }
+      case 4: {
         return (
           <AdditionalServicesStep
-            servicesState={calc.additionalServicesState}
-            onServiceChange={calc.handleAdditionalServiceChange}
-            onQuantityChange={calc.handleQuantityChange}
             displayPrice={calc.displayPrice}
+            servicesState={calc.additionalServicesState}
+            onQuantityChange={calc.handleQuantityChange}
+            onServiceChange={calc.handleAdditionalServiceChange}
           />
         );
-      case 5:
+      }
+      case 5: {
         return (
           <SummaryStep
-            summary={calc.getOrderSummary()}
             displayPrice={calc.displayPrice}
+            summary={calc.getOrderSummary()}
           />
         );
-      default:
-        return null;
+      }
+      default: {
+        return;
+      }
     }
   };
 
@@ -145,7 +156,6 @@ export const CalculatorWizard = () => {
           <CardDescription>
             {STEPS_INFO[currentStep].description}
           </CardDescription>
-
           <div className='mt-4'>
             <div className='mb-2 flex justify-between text-xs text-muted-foreground'>
               {STEPS_INFO.map((_, index) => (
@@ -160,7 +170,7 @@ export const CalculatorWizard = () => {
                 </span>
               ))}
             </div>
-            <Progress value={progressPercentage} className='h-2' />
+            <Progress className='h-2' value={progressPercentage} />
           </div>
         </CardHeader>
 
@@ -168,9 +178,9 @@ export const CalculatorWizard = () => {
 
         <CardFooter className='flex justify-between'>
           <Button
+            disabled={currentStep === 0}
             variant='outline'
             onClick={previousStep}
-            disabled={currentStep === 0}
           >
             <ArrowLeft className='mr-2 h-4 w-4' />
             Назад
@@ -178,13 +188,13 @@ export const CalculatorWizard = () => {
 
           {currentStep === STEPS_INFO.length - 1 ? (
             <Button
-              onClick={() => setIsOrderModalOpen(true)}
               disabled={!calc.serviceType}
+              onClick={() => setIsOrderModalOpen(true)}
             >
               Заказать уборку
             </Button>
           ) : (
-            <Button onClick={nextStep} disabled={!canProceed}>
+            <Button disabled={!canProceed} onClick={nextStep}>
               Далее
               <ArrowRight className='ml-2 h-4 w-4' />
             </Button>
@@ -193,16 +203,16 @@ export const CalculatorWizard = () => {
       </Card>
 
       <OrderModal
-        isOpen={isOrderModalOpen}
-        onClose={() => setIsOrderModalOpen(false)}
-        initialService={calc.serviceType}
-        fromCalculator={true}
         calculatorOptions={{
+          hasPet: calc.hasPet,
           noMop: calc.noMop,
           noVacuum: calc.noVacuum,
-          hasPet: calc.hasPet,
         }}
+        fromCalculator={true}
+        initialService={calc.serviceType}
+        isOpen={isOrderModalOpen}
         orderSummary={calc.getOrderSummary()}
+        onClose={() => setIsOrderModalOpen(false)}
       />
     </div>
   );

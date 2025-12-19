@@ -86,8 +86,8 @@ export function ReviewsTab({
                 </p>
                 <div className='mt-4 flex gap-2'>
                   <Button
-                    variant='outline'
                     size='sm'
+                    variant='outline'
                     onClick={() => {
                       handleEdit(review);
                     }}
@@ -95,8 +95,8 @@ export function ReviewsTab({
                     Редактировать
                   </Button>
                   <Button
-                    variant='outline'
                     size='sm'
+                    variant='outline'
                     onClick={() => {
                       handleDelete(review);
                     }}
@@ -126,14 +126,14 @@ export function ReviewsTab({
       </Card>
 
       <EditReviewModal
-        review={selectedReview}
         isOpen={isEditOpen}
+        review={selectedReview}
         onClose={() => setIsEditOpen(false)}
         onSubmit={handleEditSubmit}
       />
       <DeleteReviewModal
-        review={selectedReview}
         isOpen={isDeleteOpen}
+        review={selectedReview}
         onClose={() => setIsDeleteOpen(false)}
         onConfirm={handleDeleteConfirm}
       />

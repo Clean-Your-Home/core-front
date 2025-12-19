@@ -39,13 +39,13 @@ export const AdditionalServicesStep = ({
                 <div className='mb-2 flex items-center justify-between'>
                   <div className='flex items-center space-x-2'>
                     <Checkbox
-                      id={`service-${service.id}`}
                       checked={state.selected}
+                      id={`service-${service.id}`}
                       onCheckedChange={(c) => onServiceChange(service.id, !!c)}
                     />
                     <Label
-                      htmlFor={`service-${service.id}`}
                       className='flex cursor-pointer items-center font-medium'
+                      htmlFor={`service-${service.id}`}
                     >
                       <span className='mr-2 text-primary'>{service.icon}</span>
                       {service.name}
@@ -63,17 +63,17 @@ export const AdditionalServicesStep = ({
                     </p>
                     <div className='flex items-center'>
                       <Label
-                        htmlFor={`quantity-${service.id}`}
                         className='mr-2 text-sm'
+                        htmlFor={`quantity-${service.id}`}
                       >
                         Количество:
                       </Label>
                       <div className='flex items-center'>
                         <Button
+                          className='h-8 w-8 p-0'
+                          size='sm'
                           type='button'
                           variant='outline'
-                          size='sm'
-                          className='h-8 w-8 p-0'
                           onClick={() =>
                             onQuantityChange(
                               service.id,
@@ -101,8 +101,8 @@ export const AdditionalServicesStep = ({
                         />
                         <Button
                           className='h-8 w-8 p-0'
-                          type='button'
                           size='sm'
+                          type='button'
                           variant='outline'
                           onClick={() =>
                             onQuantityChange(service.id, state.quantity + 1)

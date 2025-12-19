@@ -43,12 +43,12 @@ export function ProfileContent(properties: ProfileContentProperties) {
       <ProfileTabsContent value='reviews'>
         <ReviewsTab
           reviews={properties.reviews}
-          onEditReview={properties.onEditReview}
           onDeleteReview={properties.onDeleteReview}
+          onEditReview={properties.onEditReview}
         />
       </ProfileTabsContent>
       <ProfileTabsContent value='loyalty'>
-        <LoyaltyTab profile={properties.profile} orders={properties.orders} />
+        <LoyaltyTab orders={properties.orders} profile={properties.profile} />
       </ProfileTabsContent>
     </ProfileTabs>
   );
