@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 
-import { CONTACTS } from '@/shared/config/contacts';
+import { ENDPOINTS } from '@/shared/config';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
@@ -32,16 +32,21 @@ export const ContactForm = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // TODO: Сделать логику отправки
-      // eslint-disable-next-line no-console
-      console.log('Form submitted:', data);
+      const response = await fetch(ENDPOINTS.CONTACT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      if (!response.ok) {
+        throw new Error('Ошибка отправки');
+      }
 
       toast.success('Заявка отправлена', {
         description: 'Мы свяжемся с вами в ближайшее время',
       });
-
       reset();
     } catch {
       toast.error('Ошибка отправки', {
@@ -55,7 +60,6 @@ export const ContactForm = () => {
       <Typography className='mb-6 text-xl font-semibold' variant='h3'>
         Заказать обратный звонок
       </Typography>
-
       <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
         <div className='grid gap-2'>
           <Label htmlFor='name'>Ваше имя</Label>
@@ -71,7 +75,7 @@ export const ContactForm = () => {
           <Label htmlFor='phone'>Телефон</Label>
           <Input
             id='phone'
-            placeholder={CONTACTS.PHONE.display}
+            placeholder='+7 (999) 999-99-99'
             type='tel'
             {...register('phone')}
           />

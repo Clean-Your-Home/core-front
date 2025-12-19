@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -8,33 +10,30 @@ export const useNewsletter = () => {
     event.preventDefault();
     setIsSubmitting(true);
 
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get('email') as string;
+
     try {
-      const formData = new FormData(event.currentTarget);
-      const email = formData.get('email') as string;
-
-      // TODO: Добавить логику подписки
-      // eslint-disable-next-line no-console
-      console.log('Subscribing email:', email);
-
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      toast.success('Подписка оформлена', {
-        description:
-          'Теперь вы будете получать наши новости и специальные предложения',
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
       });
 
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Ошибка');
+      }
+
+      toast.success('Вы успешно подписаны!', {
+        description: 'Спасибо за интерес к нашим новостям!',
+      });
       event.currentTarget.reset();
-    } catch {
-      toast.error('Ошибка подписки', {
-        description: 'Пожалуйста, попробуйте еще раз',
-      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  return {
-    isSubmitting,
-    handleSubscribe,
-  };
+  return { isSubmitting, handleSubscribe };
 };
