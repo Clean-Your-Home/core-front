@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const CalculatorPage = () => {
   return (
-    <div className='container py-12'>
+    <div className='container mx-auto py-12'>
       <div className='mb-10 text-center'>
         <h1 className='text-3xl font-bold tracking-tight sm:text-4xl'>
           Калькулятор стоимости услуг
